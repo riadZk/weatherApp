@@ -1,5 +1,4 @@
 # weatherApp
-# my-app
 
 ## Project setup
 ```
