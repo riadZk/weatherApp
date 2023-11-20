@@ -1,12 +1,11 @@
 <template>
-  <!-- :class="typeof weather.main != 'undefined' && weather.main.temp > 16 ? 'warm' : '' -->
   <div id="app">
     <main>
       <div class="search-box mb-3">
         <form class="">
           <input
             type="text"
-            class="search-bar"
+            class="Search"
             placeholder="Enter your city"
             v-model="ville"
           />
@@ -15,7 +14,7 @@
           </button>
         </form>
       </div>
-      <div class="weather-wrap" v-if="typeof weather.main != 'undefined'">
+      <div class="weather-main" v-if="typeof weather.main != 'undefined'">
         <div class="row wrap">
           <div class="location">
             {{ weather.name }}, {{ weather.sys.country }}
@@ -23,7 +22,7 @@
           <div class="date">{{ dateBuilder() }}</div>
           <div class="temp">{{ Math.round(weather.main.temp) }}°c</div>
           <img :src="weatherIcons[weather.weather[0].icon]" />
-          <div class="temp-des">{{ weather.weather[0].description }}</div>
+          <div class="weather-des">{{ weather.weather[0].description }}</div>
           <div class="wind-speed">Wind Spead : {{ weather.wind.speed }}</div>
         </div>
       </div>
@@ -178,7 +177,7 @@ img {
   height: 150px;
   width: 200px;
 }
-.weather-wrap {
+.weather-main {
   width: auto;
   height: auto;
   border-radius: 50px;
@@ -210,7 +209,7 @@ img {
   font-size: 50px;
   font-weight: bold;
 }
-.temp-des {
+.weather-des {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 30px;
