@@ -16,14 +16,23 @@
       </div>
       <div class="weather-main" v-if="typeof weather.main != 'undefined'">
         <div class="row wrap">
-          <div class="location">
-            {{ weather.name }}, {{ weather.sys.country }}
+          <div class="location d-flex">
+            <span class="icon-maps">
+              <Icon icon="simple-icons:googlemaps" width="23" height="23" />
+            </span>
+            <span class="pl-4">{{ weather.name }}, </span>
+            <span>{{ weather.sys.country }}</span>
           </div>
           <div class="date">{{ dateBuilder() }}</div>
           <div class="temp">{{ Math.round(weather.main.temp) }}°c</div>
           <img :src="weatherIcons[weather.weather[0].icon]" />
           <div class="weather-des">{{ weather.weather[0].description }}</div>
-          <div class="wind-speed">Wind Spead : {{ weather.wind.speed }}</div>
+          <div class="wind-speed d-flex align-items-center">
+            <span>
+              <Icon icon="meteocons:wind-snow-fill" width="30" height="30" />
+            </span>
+            <span>Wind Spead : {{ weather.wind.speed }}</span>
+          </div>
         </div>
       </div>
     </main>
@@ -31,6 +40,7 @@
 </template>
 <script>
 import axios from "axios";
+import { Icon } from "@iconify/vue";
 import icon01d from "@/assets/01d.svg";
 import icon01n from "@/assets/01n.svg";
 import icon02d from "@/assets/02d.svg";
@@ -54,8 +64,8 @@ export default {
   name: "app",
   data() {
     return {
-      apiKey: process.env.VUE_APP_API_KEY,
-      url: process.env.VUE_APP_BASE_URL,
+      apiKey: "3ab112adc6c3d48b6157938eb759c296",
+      url: "https://api.openweathermap.org/data/2.5/",
       ville: "",
       weather: {},
       weatherIcons: {
@@ -79,6 +89,9 @@ export default {
         "50n": icon50n,
       },
     };
+  },
+  components: {
+    Icon,
   },
   methods: {
     fetchWeather() {
@@ -194,6 +207,9 @@ img {
   font-weight: bold;
   font-size: 30px;
 }
+.icon-maps{
+  padding-right: 5px;
+}
 .date {
   font-size: 14px;
   color: rgb(192, 192, 192);
@@ -218,5 +234,11 @@ img {
 .wind-speed {
   font-size: 15px;
   font-weight: bold;
+  font-size: 15px;
+  font-weight: bold;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
 }
 </style>
