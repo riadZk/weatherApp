@@ -64,8 +64,8 @@ export default {
   name: "app",
   data() {
     return {
-      apiKey: "3ab112adc6c3d48b6157938eb759c296",
-      url: "https://api.openweathermap.org/data/2.5/",
+      apiKey: process.env.VUE_APP_API_KEY,
+      url: process.env.VUE_APP_URL,
       ville: "",
       weather: {},
       weatherIcons: {
